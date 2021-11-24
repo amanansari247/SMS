@@ -60,6 +60,9 @@ def firstw():
     firstw.geometry("800x600")
     firstw.maxsize(600,800)
     firstw.minsize(800,600)
+    def back():
+        firstw.destroy()
+        first()
     def login():
         if user.get() == "1" and user3.get() == "1":
             firstw.destroy()
@@ -84,6 +87,8 @@ def firstw():
     user3.place(x=270, y=360)
     b1=Button(firstw,bg="gray",command=login,text="LOGIN",fg="white",font=("arial",19))
     b1.place(x=280,y=430)
+    b2 = Button(firstw, bg="gray", command=back, text="BACK", fg="white", font=("arial", 19))
+    b2.place(x=580, y=430)
 
 def second():
     sec=Tk()
@@ -242,10 +247,62 @@ def second():
         se.geometry("700x300")
         se.maxsize(300, 300)
         se.minsize(700, 300)
+        def nex():
+            if user.get()=="" or user2.get()=="" or user3.get()==""or user4.get()=="":
+                t = tkinter.messagebox.showinfo("", "something missing...fill it again....")
+                se.destroy()
+            else:
+                file = open('Timetable.txt', 'a')
+                file.write("{")
+                file.write("\n")
+                file.write('START TIME :' + user.get())
+                file.write("\n")
+                file.write('END TIME :' + user2.get())
+                file.write("\n")
+                file.write('CLASS :' + user3.get())
+                file.write("\n")
+                file.write('SECTION :' + user4.get())
+                file.write("}")
+                file.write("\n")
+
+                file.close()
+
+                t = tkinter.messagebox.showinfo("", "updated....")
+                user.delete(0, END)
+                user2.delete(0, END)
+                user3.delete(0, END)
+                user4.delete(0, END)
+
+
+
 
         def updat():
-            t = tkinter.messagebox.showinfo("", "updated....")
-            se.destroy()
+            if user.get()=="" or user2.get()=="" or user3.get()==""or user4.get()=="":
+                t = tkinter.messagebox.showinfo("", "something missing...fill it again....")
+                user.delete(0,END)
+                user2.delete(0,END)
+                user3.delete(0,END)
+                user4.delete(0,END)
+                se.destroy()
+            else:
+                file = open('Timetable.txt', 'a')
+                file.write("{")
+                file.write("\n")
+                file.write('START TIME :' + user.get())
+                file.write("\n")
+                file.write('END TIME :' + user2.get())
+                file.write("\n")
+                file.write('CLASS :' + user3.get())
+                file.write("\n")
+                file.write('SECTION :' + user4.get())
+                file.write("}")
+                file.write("\n")
+
+                file.close()
+                t = tkinter.messagebox.showinfo("", "updated....")
+                se.destroy()
+
+
 
         f1 = Frame(se, width=700, height=170, bg="gray")
         f1.place(x=0, y=10, anchor="nw")
@@ -280,7 +337,7 @@ def second():
         secti.place(x=310, y=60)
         b2 = Button(se, text="Update", command=updat, relief=SUNKEN, bg="orange", fg="black")
         b2.place(x=300, y=150)
-        b3 = Button(se, text="NEXT", relief=SUNKEN, bg="orange", fg="black")
+        b3 = Button(se, text="NEXT",command=nex, relief=SUNKEN, bg="orange", fg="black")
         b3.place(x=360, y=150)
 
     def assign():
@@ -289,8 +346,14 @@ def second():
         se.maxsize(300, 300)
         se.minsize(700, 300)
         def assi():
-            t= tkinter.messagebox.showinfo("", "assigned...")
-            se.destroy()
+            if e1.get()==" " and e2.get()==" ":
+                t=tkinter.messagebox.showinfo("", "not assigned...")
+                se.destroy()
+            else :
+                t = tkinter.messagebox.showinfo("", "assigned...")
+                se.destroy()
+
+
 
         def next():
             t = tkinter.messagebox.showinfo("", "assigned...")
@@ -367,6 +430,9 @@ def stud1():
     stu.geometry("800x600")
     stu.maxsize(600, 800)
     stu.minsize(800, 600)
+    def back():
+        stu.destroy()
+        first()
 
     def login():
         if entr.get() == "1" and ent.get() == "1":
@@ -395,6 +461,8 @@ def stud1():
     ent.place(x=270, y=360)
     bul1 = Button(stu, bg="gray", command=login, text="LOGIN", fg="white", font=("arial", 19))
     bul1.place(x=280, y=430)
+    bul2 = Button(stu, bg="gray", command=back, text="BACK", fg="white", font=("arial", 19))
+    bul2.place(x=480, y=430)
 
 def stu2():
     stud = Tk()
