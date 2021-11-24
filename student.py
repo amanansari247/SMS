@@ -1,29 +1,24 @@
 from tkinter import *
-from PIL import ImageTk,Image
-from tkinter import ttk
-import sqlite3
+
 import tkinter.messagebox
-from datetime import date
-from tkinter import filedialog
-import shutil
-import os
-from tkinter import Text, Tk
+
+from tkinter import Tk
 
 def go():
-    root.destroy()
-    first()
+ root.destroy()
+ first()
 
 root=Tk()
 root.geometry("800x600")
-root.minsize(500,500)
-root.maxsize(800,600)
+root.minsize(500, 500)
+root.maxsize(800, 600)
 root.title("     ")
 
-f1=Frame(root,bg="orange",width=800,height=600)
+f1=Frame(root,bg="orange", width=800, height=600)
 f1.place(x=0,y=0)
-f2=Frame(root,bg="yellow",width=600,height=300)
-f2.place(x=100,y=100)
-l2=Label(f2,text="Let's Start",bg="black",fg="white",width=55,height=2,font=("bold",15))
+f2=Frame(root, bg="yellow", width=600, height=300)
+f2.place(x=100, y=100)
+l2=Label(f2, text="Let's Start", bg="black", fg="white", width=55, height=2, font=("bold", 15))
 l2.place(x=0,y=0)
 b1=Button(f2,text="continue",command=go,width=30,height=5)
 b1.place(x=180,y=150)
@@ -156,6 +151,7 @@ def second():
         calculation2 = 2000
 
         def submit():
+
             if entry1.get() == "" or entry2.get() == " " and entry3.get() == " " and gander == 3:
                 root.destroy()
                 t = tkinter.messagebox.showinfo(" INVALID DETAILS", "ENTER VALID AND EVERY DETAILS")
@@ -164,7 +160,23 @@ def second():
 
 
             else:
+                file = open('Student Record.txt', 'a')
+                file.write("{")
+                file.write("\n")
+                file.write('Name :' +entry1.get())
+                file.write("\n")
+                file.write('Surname :' + entry2.get())
+                file.write("\n")
+                file.write('Email :' + entry3.get())
+                file.write("\n")
+                file.write("}")
+                file.write("\n")
+
+
+                file.close()
+
                 t = tkinter.messagebox.showinfo("updated", "updated")
+
                 root.destroy()
 
         label = Label(root, text="REGISTRATION FORM", font=("arial", 12), bg="black", fg="white")
@@ -193,8 +205,7 @@ def second():
         entry1 = Entry(root, bd=5, width=20, textvar=name, font=("arial", 15))
         entry1.place(x=200, y=50)
 
-        # entry22=Entry(main,bd=5, width=20,textvar=sam ,font=("arial",15))
-        # entry22.place(x=500,y=150)
+
 
         entry2 = Entry(root, bd=5, width=20, textvar=sur, font=("arial", 15))
         entry2.place(x=200, y=90)
@@ -202,10 +213,7 @@ def second():
         entry3 = Entry(root, bd=5, width=20, textvar=email, font=("arial", 15))
         entry3.place(x=200, y=130)
 
-        # entry4=Entry(root,bd=5, text="enter roll no.",width=20,textvar=search ,font=("arial",15))
-        # entry4.place(x=800,y=150)
 
-        # ================================radio buttton=======================================
 
         radio1 = Radiobutton(root, text="MALE", variable=gander, value=1, font=("arial", 13))
         radio1.place(x=200, y=170)
@@ -416,6 +424,8 @@ def stu2():
 
             if entry29.get() == " ":
                 t = tkinter.messagebox.showinfo("OOPS ", "You haven't added money.....")
+            elif entry29.get() > "20000":
+                t = tkinter.messagebox.showinfo(" ","Enter the valid amount of fees")
             else:
                 u = entry29.get()
                 entry26.insert(0, z)
